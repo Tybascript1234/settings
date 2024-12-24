@@ -208,6 +208,7 @@ body .head-click::before {
     font-size: 15px;
     background-color: #e8eaed;
     color: rgb(62, 64, 66);
+    text-decoration: none;
 }
 .oz:hover {
     padding: 0 2rem;
