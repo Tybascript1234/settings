@@ -277,6 +277,7 @@ input.empty {
             </div>
             <div class="ol-div2 k2" style="left: auto;right: 0;width: -webkit-fill-available;">
                 <div>
+                    <a class="ol-button vv" target="_blank" onclick="goBack()"><ion-icon name="arrow-back-outline"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="mailto:sales@creativecloudsit.com"><ion-icon name="mail"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="https://www.linkedin.com/company/creative-clouds-it"><ion-icon name="logo-linkedin"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="https://wa.me/966598080208?text=Im%20interested%20in%20your%20services."><ion-icon name="logo-whatsapp"></ion-icon></a>
@@ -299,6 +300,17 @@ input.empty {
         </div>
     </form>
 </div>
+
+<script>
+    function goBack() {
+        // استخدام التاريخ للعودة
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            alert("لا توجد صفحة سابقة في السجل!");
+        }
+    }
+</script>
 
 <script>
 // معالجة إرسال النموذج
