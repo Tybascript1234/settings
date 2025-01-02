@@ -3,85 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Login</title>
+    <title>Face Verification</title>
+    <style>
+        #main-container, #content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #main-container { display: flex; }
+        #content { display: none; }
+        #face-verify-btn { margin: 20px; padding: 10px 20px; font-size: 18px; }
+    </style>
 </head>
 <body>
-    <div id="main-container" style="display: flex; flex-direction: column; align-items: center;">
-        <h1>Login with Face Recognition</h1>
-        <video id="video" width="480" height="360" autoplay muted></video>
-        <button id="face-verify-btn">Verify Face</button>
+    <div id="main-container">
+        <button id="face-verify-btn">Login with Face</button>
     </div>
-    <div id="content" style="display: none;">
-        <h1>Welcome Back!</h1>
-        <p>Your content goes here.</p>
+    <div id="content">
+        <h1>Welcome! You are verified.</h1>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const mainContainer = document.getElementById('main-container');
             const content = document.getElementById('content');
-            const video = document.getElementById('video');
             const faceVerifyButton = document.getElementById('face-verify-btn');
 
-            // Load models for face recognition
-            await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
-            await faceapi.nets.faceRecognitionNet.loadFromUri('/models');
-            await faceapi.nets.faceLandmark68Net.loadFromUri('/models');
+            // Function to handle face verification
+            async function verifyFace() {
+                try {
+                    // Create a PublicKeyCredential request
+                    const publicKey = {
+                        challenge: Uint8Array.from("randomStringForChallenge", c => c.charCodeAt(0)), // Random challenge
+                        rp: {
+                            name: "My Website"
+                        },
+                        user: {
+                            id: Uint8Array.from("uniqueUserId", c => c.charCodeAt(0)), // Unique user ID
+                            name: "user@example.com",
+                            displayName: "User Name"
+                        },
+                        pubKeyCredParams: [
+                            {
+                                type: "public-key",
+                                alg: -7 // "ES256" algorithm
+                            }
+                        ],
+                        timeout: 60000, // Timeout for user action
+                        authenticatorSelection: {
+                            authenticatorAttachment: "platform",
+                            userVerification: "required"
+                        }
+                    };
 
-            // Start video stream
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(stream => {
-                    video.srcObject = stream;
-                })
-                .catch(err => {
-                    console.error("Error accessing camera:", err);
-                    alert("Please allow camera access to use face recognition.");
-                });
+                    // Request the user's biometric authentication
+                    const credential = await navigator.credentials.create({ publicKey });
 
-            // Predefined reference descriptors (simulate a known face)
-            let referenceDescriptor = null; // Add your pre-processed face descriptor here
-
-            // Event listener for face verification
-            faceVerifyButton.addEventListener('click', async () => {
-                const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-                    .withFaceLandmarks()
-                    .withFaceDescriptors();
-
-                if (detections.length > 0) {
-                    const faceMatcher = new faceapi.FaceMatcher(referenceDescriptor, 0.6);
-                    const match = detections.map(d => faceMatcher.findBestMatch(d.descriptor));
-
-                    if (match[0] && match[0].label !== 'unknown') {
-                        localStorage.setItem('lastVerifiedTime', Date.now());
+                    if (credential) {
+                        alert("Face Verified Successfully!");
                         mainContainer.style.display = 'none';
                         content.style.display = 'flex';
-                    } else {
-                        alert('Face not recognized. Please try again.');
                     }
-                } else {
-                    alert('No face detected. Please position yourself properly in front of the camera.');
+                } catch (error) {
+                    console.error("Authentication failed:", error);
+                    alert("Face verification failed. Please try again.");
                 }
-            });
-
-            // Check visibility
-            function checkVisibility() {
-                const lastVerifiedTime = localStorage.getItem('lastVerifiedTime');
-                const currentTime = Date.now();
-
-                if (lastVerifiedTime) {
-                    const elapsedMinutes = (currentTime - parseInt(lastVerifiedTime, 10)) / (1000 * 60);
-                    if (elapsedMinutes < 15) {
-                        mainContainer.style.display = 'none';
-                        content.style.display = 'flex';
-                        return;
-                    }
-                }
-
-                mainContainer.style.display = 'flex';
-                content.style.display = 'none';
             }
 
-            checkVisibility();
+            // Event listener for the face verify button
+            faceVerifyButton.addEventListener('click', verifyFace);
         });
     </script>
 </body>
