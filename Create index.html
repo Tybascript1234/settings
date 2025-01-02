@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Login</title>
+</head>
+<body>
+    <div id="main-container" style="display: flex; flex-direction: column; align-items: center;">
+        <h1>Login with Face Recognition</h1>
+        <video id="video" width="480" height="360" autoplay muted></video>
+        <button id="face-verify-btn">Verify Face</button>
+    </div>
+    <div id="content" style="display: none;">
+        <h1>Welcome Back!</h1>
+        <p>Your content goes here.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const mainContainer = document.getElementById('main-container');
+            const content = document.getElementById('content');
+            const video = document.getElementById('video');
+            const faceVerifyButton = document.getElementById('face-verify-btn');
+
+            // Load models for face recognition
+            await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+            await faceapi.nets.faceRecognitionNet.loadFromUri('/models');
+            await faceapi.nets.faceLandmark68Net.loadFromUri('/models');
+
+            // Start video stream
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error("Error accessing camera:", err);
+                    alert("Please allow camera access to use face recognition.");
+                });
+
+            // Predefined reference descriptors (simulate a known face)
+            let referenceDescriptor = null; // Add your pre-processed face descriptor here
+
+            // Event listener for face verification
+            faceVerifyButton.addEventListener('click', async () => {
+                const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+                    .withFaceLandmarks()
+                    .withFaceDescriptors();
+
+                if (detections.length > 0) {
+                    const faceMatcher = new faceapi.FaceMatcher(referenceDescriptor, 0.6);
+                    const match = detections.map(d => faceMatcher.findBestMatch(d.descriptor));
+
+                    if (match[0] && match[0].label !== 'unknown') {
+                        localStorage.setItem('lastVerifiedTime', Date.now());
+                        mainContainer.style.display = 'none';
+                        content.style.display = 'flex';
+                    } else {
+                        alert('Face not recognized. Please try again.');
+                    }
+                } else {
+                    alert('No face detected. Please position yourself properly in front of the camera.');
+                }
+            });
+
+            // Check visibility
+            function checkVisibility() {
+                const lastVerifiedTime = localStorage.getItem('lastVerifiedTime');
+                const currentTime = Date.now();
+
+                if (lastVerifiedTime) {
+                    const elapsedMinutes = (currentTime - parseInt(lastVerifiedTime, 10)) / (1000 * 60);
+                    if (elapsedMinutes < 15) {
+                        mainContainer.style.display = 'none';
+                        content.style.display = 'flex';
+                        return;
+                    }
+                }
+
+                mainContainer.style.display = 'flex';
+                content.style.display = 'none';
+            }
+
+            checkVisibility();
+        });
+    </script>
+</body>
+</html>
