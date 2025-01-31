@@ -24,6 +24,13 @@ body {
     background: rgb(240 244 249);
     color: #3f3f3f;
 }
+ul {
+    margin: 0;
+    padding: 0;
+}
+body .Translate-div {
+    justify-content: left;
+}
 button {
     user-select: none;
     cursor: pointer;
@@ -105,8 +112,8 @@ ion-icon {
     display: flex;
     align-items: center;
     background: white;
-    border: solid 1px #dadada;
-    box-shadow: 0px 1px 3px #00000014;
+    border: solid 1px #afafaf47;
+    box-shadow: 0px 1px 3px #0000000d;
     font-size: 14px;
     padding: 0 16px;
     font-family: system-ui;
@@ -131,6 +138,7 @@ ion-icon {
     background-color: rgb(37, 103, 211);
 }
 .ol-button {
+    overflow: hidden;
     cursor: pointer;
     background: #0000;
     border: none;
@@ -142,6 +150,9 @@ ion-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+.ol-button svg {
+    height: 21px;
 }
 .vv:hover {
     box-shadow: rgb(0 0 0 / 6%) 0px 0px 0px 44px inset;
@@ -232,6 +243,16 @@ body .ol-button {
 .kkil span {
     font-size: 22px;
 }
+body .Languag .ooo {
+    right: 0;
+    left: auto;
+    position: fixed;
+    width: 100%;
+}
+body .links-Translate-div {
+    width: -webkit-fill-available;
+    border-radius: 16px 16px 0px 0px;
+}
 }
 
 .k1{
@@ -259,7 +280,17 @@ input.empty {
 .xo a:hover {
     color: #0067b8;
 }
-
+.Languag {
+    position: relative;
+}
+.Languag .ooo {
+    position: absolute;
+    display: none;
+    z-index: 20;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+}
      </style>
 </head>
 <body>
@@ -276,11 +307,18 @@ input.empty {
                 <span class="xo"><a target="_blank" href="https://creativecloudsit.com/?srsltid=AfmBOorlFy4ViheQyEqYm7Fw2OvcAIVXcs0oBi03aTFWmcdB8PXOZYiH">Creative Clouds IT</a> تطوير شركة</span>
             </div>
             <div class="ol-div2 k2" style="left: auto;right: 0;width: -webkit-fill-available;">
-                <div>
-                    <a class="ol-button vv" target="_blank" onclick="goBack()"><ion-icon name="arrow-back-outline"></ion-icon></a>
+                <div style="display: flex;">
+                    <a class="ol-button vv" target="_blank" id="backButton" onclick="goBack()"><ion-icon name="arrow-back-outline"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="mailto:sales@creativecloudsit.com"><ion-icon name="mail"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="https://www.linkedin.com/company/creative-clouds-it"><ion-icon name="logo-linkedin"></ion-icon></a>
                     <a class="ol-button vv" target="_blank" href="https://wa.me/966598080208?text=Im%20interested%20in%20your%20services."><ion-icon name="logo-whatsapp"></ion-icon></a>
+                    <div class="Languag">
+                        <a class="ol-button vv" id="toggleButton"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 112h288M192 64v48M272 448l96-224 96 224M301.5 384h133M281.3 112S257 206 199 277 80 384 80 384"/><path d="M256 336s-35-27-72-75-56-85-56-85" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg></a>
+                        <ul class="ooo" id="myDiv">
+                            <script src="https://tybascript1234.github.io/Languag/embed.js"></script>
+                            <div id="target-container"></div>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -302,14 +340,36 @@ input.empty {
 </div>
 
 <script>
-    function goBack() {
-        // استخدام التاريخ للعودة
-        if (window.history.length > 1) {
-            window.history.back();
-        } else {
-            alert("لا توجد صفحة سابقة في السجل!");
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    const backButton = document.getElementById("backButton");
+
+    if (window.history.length <= 1) {
+        backButton.style.display = "none"; // إخفاء الزر
     }
+});
+
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    }
+}
+</script>
+
+<script>
+    
+const button = document.getElementById('toggleButton');
+        const myDiv = document.getElementById('myDiv');
+
+        button.addEventListener('click', function(event) {
+            myDiv.style.display = 'block';
+            event.stopPropagation(); // لمنع تنفيذ الحدث في العنصر الأب
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!myDiv.contains(event.target) && event.target !== button) {
+                myDiv.style.display = 'none';
+            }
+});
 </script>
 
 <script>
