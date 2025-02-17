@@ -456,15 +456,18 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-   // جلب الأيقونة من الرابط <link rel="icon">
-   const favicon = document.querySelector("link[rel='icon']");
+ // جلب الأيقونة من العنصر <link rel="icon">
+ const favicon = document.querySelector("link[rel='icon']");
         const faviconContainer = document.getElementById("favicon-container");
-        
+
         if (favicon && favicon.href) {
+            // التأكد من أن href يحتوي على قيمة صحيحة
+            console.log("URL الأيقونة:", favicon.href); // عرض الرابط في الكونسول
+
             // تعيين الأيقونة كخلفية للعنصر
             faviconContainer.style.backgroundImage = `url(${favicon.href})`;
         } else {
-            console.log("لا يوجد أيقونة مرفقة في الصفحة.");
+            console.log("لا يوجد أيقونة مرفقة.");
         }
 </script>
 
