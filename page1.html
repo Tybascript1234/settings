@@ -308,7 +308,7 @@ input.empty {
 <!-- نموذج الاشتراك -->
 <div class="ccit">
     <form class="rr" id="registrationForm">
-        <div class="ccit-logo"></div>
+        <div class="ccit-logo favicon-container"></div>
         <div class="ol" style="text-align: left;">
             <div class="ddf">
                 <span class="texte">اشترك معنا</span>
@@ -455,7 +455,15 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 </script>
 
 
-
+<script>
+   // جلب الأيقونة من الرابط <link>
+   const favicon = document.querySelector("link[rel='icon']");
+    const faviconContainer = document.querySelector(".favicon-container");
+    
+    if (favicon) {
+        faviconContainer.style.backgroundImage = `url(${favicon.href})`; // تعيين الأيقونة كخلفية
+    }
+</script>
 
 </body>
 </html>
