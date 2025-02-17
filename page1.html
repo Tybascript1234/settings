@@ -456,19 +456,21 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
- // جلب الأيقونة من العنصر <link rel="icon">
- const favicon = document.querySelector("link[rel='icon']");
-        const faviconContainer = document.getElementById("favicon-container");
+ // جلب رابط الموقع السابق
+ let previousSite = document.referrer;
 
-        if (favicon && favicon.href) {
-            // التأكد من أن href يحتوي على قيمة صحيحة
-            console.log("URL الأيقونة:", favicon.href); // عرض الرابط في الكونسول
+if (previousSite) {
+    // استخراج اسم النطاق فقط من الرابط
+    let domain = new URL(previousSite).hostname;
+    let faviconURL = `https://www.google.com/s2/favicons?domain=${domain}`;
 
-            // تعيين الأيقونة كخلفية للعنصر
-            faviconContainer.style.backgroundImage = `url(${favicon.href})`;
-        } else {
-            console.log("لا يوجد أيقونة مرفقة.");
-        }
+    console.log("أيقونة الموقع السابق:", faviconURL); // طباعة الرابط في الكونسول
+
+    // تعيين الأيقونة كخلفية للعنصر
+    document.getElementById("favicon-container").style.backgroundImage = `url(${faviconURL})`;
+} else {
+    console.log("لم يتم العثور على موقع سابق!");
+}
 </script>
 
 </body>
