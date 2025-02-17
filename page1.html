@@ -456,21 +456,38 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
- // جلب رابط الموقع السابق
- let previousSite = document.referrer;
+  // الحصول على رابط الموقع السابق
+        const previousSite = document.referrer;
+        const faviconContainer = document.getElementById("favicon-container");
 
-if (previousSite) {
-    // استخراج اسم النطاق فقط من الرابط
-    let domain = new URL(previousSite).hostname;
-    let faviconURL = `https://www.google.com/s2/favicons?domain=${domain}`;
+        if (previousSite) {
+            console.log("الموقع السابق:", previousSite);
 
-    console.log("أيقونة الموقع السابق:", faviconURL); // طباعة الرابط في الكونسول
+            // محاولة جلب الأيقونة من الموقع السابق
+            fetch(previousSite)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, "text/html");
+                    const favicon = doc.querySelector("link[rel='icon'], link[rel='shortcut icon']");
 
-    // تعيين الأيقونة كخلفية للعنصر
-    document.getElementById("favicon-container").style.backgroundImage = `url(${faviconURL})`;
-} else {
-    console.log("لم يتم العثور على موقع سابق!");
-}
+                    if (favicon && favicon.href) {
+                        console.log("تم العثور على الأيقونة:", favicon.href);
+                        faviconContainer.style.backgroundImage = `url(${favicon.href})`;
+                        faviconContainer.textContent = ""; // إخفاء النص
+                    } else {
+                        console.log("لم يتم العثور على أيقونة.");
+                        faviconContainer.textContent = "لم يتم العثور على أيقونة";
+                    }
+                })
+                .catch(error => {
+                    console.error("حدث خطأ أثناء جلب الأيقونة:", error);
+                    faviconContainer.textContent = "خطأ في جلب الأيقونة";
+                });
+        } else {
+            console.log("لا يوجد موقع سابق.");
+            faviconContainer.textContent = "لا يوجد موقع سابق";
+        }
 </script>
 
 </body>
