@@ -456,24 +456,38 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-// الحصول على رابط الموقع السابق
+  // الحصول على رابط الموقع السابق
         const previousSite = document.referrer;
         const faviconContainer = document.getElementById("favicon-container");
 
         if (previousSite) {
             console.log("الموقع السابق:", previousSite);
 
-            // استخراج اسم الدومين فقط
+            // استخراج الدومين فقط
             const url = new URL(previousSite);
             const baseDomain = url.hostname; // مثل "example.com"
 
-            // استخدام Google Favicon API
+            // رابط جوجل لاستخراج الأيقونة
             const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${baseDomain}`;
 
-            // تعيين الأيقونة كخلفية
-            faviconContainer.style.backgroundImage = `url(${faviconUrl})`;
-            faviconContainer.textContent = ""; // إزالة النص
-            console.log("تم العثور على الأيقونة:", faviconUrl);
+            // تجربة جلب الصورة
+            fetch(faviconUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("لم يتم العثور على الأيقونة");
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const objectURL = URL.createObjectURL(blob);
+                    faviconContainer.style.backgroundImage = `url(${objectURL})`;
+                    faviconContainer.textContent = ""; // إزالة النص
+                    console.log("تم العثور على الأيقونة:", objectURL);
+                })
+                .catch(error => {
+                    console.error(error);
+                    faviconContainer.textContent = "لم يتم العثور على أيقونة";
+                });
         } else {
             console.log("لا يوجد موقع سابق.");
             faviconContainer.textContent = "لا يوجد موقع سابق";
