@@ -456,52 +456,24 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-    // الحصول على رابط الموقع السابق
+// الحصول على رابط الموقع السابق
         const previousSite = document.referrer;
         const faviconContainer = document.getElementById("favicon-container");
 
         if (previousSite) {
             console.log("الموقع السابق:", previousSite);
 
-            // استخراج الدومين فقط بدون المسار
+            // استخراج اسم الدومين فقط
             const url = new URL(previousSite);
-            const baseDomain = url.origin; // مثل "https://example.com"
+            const baseDomain = url.hostname; // مثل "example.com"
 
-            // قائمة بالمسارات الشائعة للأيقونات
-            const possibleFaviconPaths = [
-                "/favicon.ico",
-                "/favicon.png",
-                "/favicon.svg"
-            ];
+            // استخدام Google Favicon API
+            const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${baseDomain}`;
 
-            let faviconFound = false;
-
-            // تجربة تحميل الأيقونات المحتملة
-            possibleFaviconPaths.forEach(path => {
-                const faviconUrl = baseDomain + path;
-                const img = new Image();
-
-                img.onload = function () {
-                    if (!faviconFound) { // تأكد من تعيين الأيقونة مرة واحدة فقط
-                        faviconFound = true;
-                        faviconContainer.style.backgroundImage = `url(${faviconUrl})`;
-                        faviconContainer.textContent = ""; // إزالة النص
-                        console.log("تم العثور على الأيقونة:", faviconUrl);
-                    }
-                };
-
-                img.onerror = function () {
-                    console.log("لم يتم العثور على الأيقونة في:", faviconUrl);
-                };
-
-                img.src = faviconUrl;
-            });
-
-            setTimeout(() => {
-                if (!faviconFound) {
-                    faviconContainer.textContent = "لم يتم العثور على أيقونة";
-                }
-            }, 3000); // مهلة انتظار 3 ثوانٍ قبل إظهار رسالة الفشل
+            // تعيين الأيقونة كخلفية
+            faviconContainer.style.backgroundImage = `url(${faviconUrl})`;
+            faviconContainer.textContent = ""; // إزالة النص
+            console.log("تم العثور على الأيقونة:", faviconUrl);
         } else {
             console.log("لا يوجد موقع سابق.");
             faviconContainer.textContent = "لا يوجد موقع سابق";
