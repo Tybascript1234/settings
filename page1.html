@@ -306,10 +306,10 @@ input.empty {
 <!-- نموذج الاشتراك -->
 <div class="ccit">
     <div class="rr">
-        <div class="ccit-logo favicon-container" id="imageContainer"></div>
+        <div class="ccit-logo favicon-container" id="image-container"></div>
         <div class="ol" style="text-align: left;">
             <div class="ddf">
-                <span id="linkInput"></span><span class="texte">اشترك معنا</span>
+                <span id="link-container"></span><span class="texte">اشترك معنا</span>
                 <br>
                 <span>إستخدم حساب جوجل الخاص بك</span>
                 <br>
@@ -454,23 +454,52 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-     const linksWithImages = {
-            "https://tybascript1234.github.io/Qr-1/": "https://github.com/Tybascript1234/Qr-1/blob/main/New%20Project.png?raw=true",
-            "https://google.com": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png",
-            "https://facebook.com": "https://www.facebook.com/images/fb_icon_325x325.png"
-        };
+// تخزين الروابط والصور في مصفوفة
+const sites = [
+      {
+        link: "https://tybascript1234.github.io/Qr-1/",
+        imageUrl: "https://github.com/Tybascript1234/Qr-1/blob/main/New%20Project.png?raw=true"
+      },
+      {
+        link: "https://www.example2.com",
+        imageUrl: "https://via.placeholder.com/150/FF5733/FFFFFF?Text=Example2"
+      }
+      // يمكنك إضافة المزيد من المواقع هنا
+    ];
 
-        const inputField = document.getElementById("linkInput");
-        const imageContainer = document.getElementById("imageContainer");
+    // دالة لإضافة المواقع إلى الديف الخاص بالرابط
+    function displayLinks() {
+      const linkContainer = document.getElementById('link-container');
+      linkContainer.innerHTML = ''; // مسح المحتوى القديم
 
-        inputField.addEventListener("input", function() {
-            const link = inputField.value.trim();
-            if (linksWithImages[link]) {
-                imageContainer.innerHTML = `<img src="${linksWithImages[link]}" alt="صورة الموقع">`;
-            } else {
-                imageContainer.innerHTML = "";
-            }
-        });
+      sites.forEach(site => {
+        const siteLink = document.createElement('a');
+        siteLink.href = site.link;
+        siteLink.target = '_blank';
+        siteLink.textContent = `رابط إلى الموقع: ${site.link}`;
+        linkContainer.appendChild(siteLink);
+        linkContainer.appendChild(document.createElement('br')); // إضافة فاصل بين الروابط
+      });
+    }
+
+    // دالة لإضافة المواقع إلى الديف الخاص بالصور
+    function displayImages() {
+      const imageContainer = document.getElementById('image-container');
+      imageContainer.innerHTML = ''; // مسح المحتوى القديم
+
+      sites.forEach(site => {
+        const siteImage = document.createElement('img');
+        siteImage.src = site.imageUrl;
+        siteImage.alt = `صورة الموقع: ${site.link}`;
+        imageContainer.appendChild(siteImage);
+        imageContainer.appendChild(document.createElement('br')); // إضافة فاصل بين الصور
+      });
+    }
+
+    // استدعاء الدوال لعرض الروابط والصور
+    displayLinks();
+    displayImages();
+
 </script>
 
 </body>
