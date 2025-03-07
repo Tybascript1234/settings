@@ -454,40 +454,45 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-   // تخزين الروابط والصور في مصفوفة
-   const sites = [
-        {
+    // تخزين الروابط والصور في مصفوفة
+    const sites = [
+      {
         link: "https://tybascript1234.github.io/Qr-1/",
         imageUrl: "https://github.com/Tybascript1234/Qr-1/blob/main/New%20Project.png?raw=true"
       },
       {
         link: "https://www.example2.com",
-        imageUrl: "https://via.placeholder.com/800x300/FF5733/FFFFFF?Text=Example2"
+        imageUrl: "https://via.placeholder.com/150/FF5733/FFFFFF?Text=Example2"
       }
       // يمكنك إضافة المزيد من المواقع هنا
     ];
 
-    // دالة لإظهار الرابط والصورة للموقع السابق
-    function displayPreviousSite(index) {
-      const siteContainer = document.getElementById('site-container');
-      const siteLink = document.getElementById('site-link');
+    // دالة لإضافة الرابط الخاص بالموقع الأول
+    function displayLink() {
+      const linkContainer = document.getElementById('link-container');
+      linkContainer.innerHTML = ''; // مسح المحتوى القديم
 
-      // مسح المحتوى السابق
-      siteLink.innerHTML = ''; // مسح الرابط القديم
-      siteContainer.style.backgroundImage = ''; // مسح الصورة القديمة
-
-      if (index >= 0 && index < sites.length) {
-        // إضافة الصورة كخلفية
-        siteContainer.style.backgroundImage = `url(${sites[index].imageUrl})`;
-
-        // عرض الرابط للموقع
-        siteLink.href = sites[index].link;
-        siteLink.textContent = `رابط إلى الموقع: ${sites[index].link}`;
-      }
+      const siteLink = document.createElement('a');
+      siteLink.href = sites[0].link; // الرابط الخاص بالموقع الأول
+      siteLink.target = '_blank';
+      siteLink.textContent = `رابط إلى الموقع: ${sites[0].link}`;
+      linkContainer.appendChild(siteLink);
     }
 
-    // استدعاء الدالة لعرض الموقع السابق
-    displayPreviousSite(0); // سيتم عرض الموقع الأول في المصفوفة
+    // دالة لإضافة الصورة الخاصة بالموقع الأول
+    function displayImage() {
+      const imageContainer = document.getElementById('image-container');
+      imageContainer.innerHTML = ''; // مسح المحتوى القديم
+
+      const siteImage = document.createElement('img');
+      siteImage.src = sites[0].imageUrl; // صورة الموقع الأول
+      siteImage.alt = `صورة الموقع: ${sites[0].link}`;
+      imageContainer.appendChild(siteImage);
+    }
+
+    // استدعاء الدوال لعرض الرابط والصورة الخاصة بالموقع الأول فقط
+    displayLink();
+    displayImage();
 
 </script>
 
