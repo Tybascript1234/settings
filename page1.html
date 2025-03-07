@@ -7,9 +7,7 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/3177/3177440.png">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="oo.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script src="reload.js"></script>
 
     <!-- ------------------ -->
      <style>
@@ -308,10 +306,10 @@ input.empty {
 <!-- نموذج الاشتراك -->
 <div class="ccit">
     <div class="rr">
-        <div class="ccit-logo favicon-container" id="favicon-container"></div>
+        <div class="ccit-logo favicon-container" id="imageContainer"></div>
         <div class="ol" style="text-align: left;">
             <div class="ddf">
-                <span class="texte">اشترك معنا</span>
+                <span id="linkInput"></span><span class="texte">اشترك معنا</span>
                 <br>
                 <span>إستخدم حساب جوجل الخاص بك</span>
                 <br>
@@ -456,42 +454,23 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-  // الحصول على رابط الموقع السابق
-        const previousSite = document.referrer;
-        const faviconContainer = document.getElementById("favicon-container");
+     const linksWithImages = {
+            "https://tybascript1234.github.io/Qr-1/": "image/New Project.png",
+            "https://google.com": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png",
+            "https://facebook.com": "https://www.facebook.com/images/fb_icon_325x325.png"
+        };
 
-        if (previousSite) {
-            console.log("الموقع السابق:", previousSite);
+        const inputField = document.getElementById("linkInput");
+        const imageContainer = document.getElementById("imageContainer");
 
-            // استخراج الدومين فقط
-            const url = new URL(previousSite);
-            const baseDomain = url.hostname; // مثل "example.com"
-
-            // رابط جوجل لاستخراج الأيقونة
-            const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${baseDomain}`;
-
-            // تجربة جلب الصورة
-            fetch(faviconUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("لم يتم العثور على الأيقونة");
-                    }
-                    return response.blob();
-                })
-                .then(blob => {
-                    const objectURL = URL.createObjectURL(blob);
-                    faviconContainer.style.backgroundImage = `url(${objectURL})`;
-                    faviconContainer.textContent = ""; // إزالة النص
-                    console.log("تم العثور على الأيقونة:", objectURL);
-                })
-                .catch(error => {
-                    console.error(error);
-                    faviconContainer.textContent = "لم يتم العثور على أيقونة";
-                });
-        } else {
-            console.log("لا يوجد موقع سابق.");
-            faviconContainer.textContent = "لا يوجد موقع سابق";
-        }
+        inputField.addEventListener("input", function() {
+            const link = inputField.value.trim();
+            if (linksWithImages[link]) {
+                imageContainer.innerHTML = `<img src="${linksWithImages[link]}" alt="صورة الموقع">`;
+            } else {
+                imageContainer.innerHTML = "";
+            }
+        });
 </script>
 
 </body>
