@@ -8,314 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-
-    <!-- ------------------ -->
-     <style>
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    background: rgb(240 244 249);
-    color: #3f3f3f;
-}
-ul {
-    margin: 0;
-    padding: 0;
-}
-body .Translate-div {
-    justify-content: left;
-}
-button {
-    user-select: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-body input:-internal-autofill-selected {
-    background-color: none;
-}
-ion-icon {
-    display: block;
-    color: #3f3f3f;
-}
-.ccit {
-    position: relative;
-    padding-top: 108px;
-    padding-right: 36px;
-    padding-left: 36px;
-    padding-bottom: 36px;
-    width: 768px;
-    height: 258px;
-    border-radius: 28px;
-    background: #fff;
-    outline: solid 1px #dadada00;
-    display: flex;
-}
-.ol {
-    user-select: none;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.ccit-logo {
-    position: absolute;
-    margin: 36px;
-    left: 0;
-    top: 0;
-    background-image: url(https://cdn-icons-png.flaticon.com/256/3177/3177440.png);
-    background-size: cover;
-    width: 51px;
-    height: 51px;
-    border-radius: 100px;
-    user-select: none;
-    overflow: hidden;
-    box-shadow: 0px 0px 2px #ccc;
-}
-.ccit-logo img {
-    height: 51px;
-}
-.ccit-logo::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 5;
-}
-.texte {
-    font-size: 2.25rem;
-    font-family: "Amiri", serif;
-    line-height: 1;
-    display: block;
-}
-.ol-div {
-    display: block;
-    width: min-content;
-}
-.ol-div input {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 336px;
-    height: 32px;
-    border: solid 1px #636363;
-    border-radius: 4px;
-    font-size: 16px;
-}
-.ol-div input:focus {
-    outline-color: rgb(11 87 208);
-}
-.ol-div2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.ol-div2-button {
-    margin-right: 10px;
-    cursor: pointer;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    background: white;
-    border: solid 1px #afafaf47;
-    box-shadow: 0px 1px 3px #0000000d;
-    font-size: 14px;
-    padding: 0 16px;
-    font-family: system-ui;
-    border-radius: 25px;
-}
-.ol-div2-button:hover {
-    background-color: #f9f9fa;
-}
-.ol-div2-button2 {
-    height: 40px;
-    background: rgb(40 113 229);
-    border: solid 1px #dadada00;
-    /* box-shadow: 0px 1px 3px #00000014; */
-    color: white;
-    font-size: 14px;
-    padding: 0 19.8px;
-    font-family: system-ui;
-    border-radius: 25px;
-    font-weight: 500;
-}
-.ol-div2-button2:hover {
-    background-color: rgb(37, 103, 211);
-}
-.ol-button {
-    overflow: hidden;
-    cursor: pointer;
-    background: #0000;
-    border: none;
-    border-radius: 25px;
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    font-size: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.ol-button svg {
-    height: 21px;
-}
-.vv:hover {
-    box-shadow: rgb(0 0 0 / 6%) 0px 0px 0px 44px inset;
-}
-.vv:active {
-    box-shadow: rgba(0, 0, 0, 0.137) 0px 0px 0px 44px inset;
-}
-.kkil {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 36px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50px;
-    background: #fff;
-    border: solid 1px #dadada;
-    font-size: 22px;
-}
-.kkil:hover {
-    background-color: #f9f9fa;
-}
-.kkil span {
-    transition: ease 0.3s;
-}
-.kkil:active span {
-    transition: ease 0.1s;
-    margin-right: 5px;
-}
-.rr {
-    display: flex;
-    width: 100%;
-}
-
-.ddf {
-    font-size: 15px;
-    font-family: system-ui;
-}
-
-@media screen and (max-width: 600px) {
-body .ccit {
-    text-align: center;
-    display: block;
-    height: -webkit-fill-available;
-    border-radius: 0;
-}
-body .ol-div2 {
-    justify-content: center;
-    padding: 0;
-    padding-right: 0;
-}
-body .ol-div input {
-    width: -webkit-fill-available;
-}
-body .ol {
-    text-align: -webkit-center;
-    padding-bottom: 55px;
-    margin-bottom: 20px;
-}
-body .ol-div {
-    width: auto;
-}
-.rr {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.ddf {
-    text-align: center;
-}
-body .ccit-logo {
-    left: auto;
-}
-.ol-div2-button,.ol-div2-button2,.ol-button,a {
-    cursor: context-menu;
-}
-body a:hover {
-    text-decoration: underline;
-}
-body .ol-button {
-    margin: 0;
-}
-.kkil {
-    z-index: 20;
-    width: 40px;
-    height: 40px;
-}
-.kkil span {
-    font-size: 22px;
-}
-body .Languag .ooo {
-    right: 0;
-    left: auto;
-    position: fixed;
-    width: -webkit-fill-available;
-    margin: 0 24px;
-}
-body .links-Translate-div {
-    width: -webkit-fill-available;
-    border-radius: 20px 20px 0px 0px;
-}
-body .links-Translate-search {
-    border-radius: 34px;
-    padding: 8px 1px;
-}
-body #button_search_input  {
-    border-radius: 34px;
-}
-body .Translate-div {
-    height: 38px;
-}
-}
-
-.k1{
-    padding-right: 25px;
-    justify-content: right;
-}
-.k2{
-    padding-right: 25px;
-    justify-content: left;
-}
-
-input.empty {
-    border: 2px solid red;
-    background-color: #ffe6e6;
-}
-.xo {
-    margin-top: 4px;
-    display: block;
-}
-.xo a {
-    transition: ease 0.3s;
-    color: #2383dd;
-    text-decoration: none;
-}
-.xo a:hover {
-    color: #0067b8;
-}
-.Languag {
-    position: relative;
-}
-.Languag .ooo {
-    position: absolute;
-    display: none;
-    z-index: 20;
-    background-color: white;
-    bottom: 0;
-    left: 0;
-}
-     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <!-- نموذج الاشتراك -->
@@ -324,7 +17,7 @@ input.empty {
         <div class="ccit-logo favicon-container" id="image-container"></div>
         <div class="ol" style="text-align: left;">
             <div class="ddf">
-                <span id="link-container"></span><span class="texte">اشترك معنا</span>
+                <span class="texte" id="link-container">اشترك معنا</span>
                 <br>
                 <span>إستخدم حساب جوجل الخاص بك</span>
                 <br>
@@ -474,7 +167,7 @@ document.getElementById('fileLabel').addEventListener('click', function() {
       {
         name: "Quran recited",  // إضافة اسم الموقع
         link: "https://tybascript1234.github.io/Qr-1/",
-        imageUrl: "https://github.com/Tybascript1234/Qr-1/blob/main/New%20Project.png?raw=true"
+        imageUrl: "image/New Project.png"
       },
       {
         name: "الموقع الثاني",  // إضافة اسم الموقع
@@ -489,8 +182,8 @@ document.getElementById('fileLabel').addEventListener('click', function() {
       const linkContainer = document.getElementById('link-container');
       linkContainer.innerHTML = ''; // مسح المحتوى القديم
 
-      const siteName = document.createElement('p');
-      siteName.textContent = `اسم الموقع: ${sites[0].name}`; // عرض اسم الموقع الأول
+      const siteName = document.createElement('span');
+      siteName.textContent = `${sites[0].name}`; // عرض اسم الموقع الأول
       linkContainer.appendChild(siteName);
     }
 
@@ -501,7 +194,7 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
       const siteImage = document.createElement('img');
       siteImage.src = sites[0].imageUrl; // صورة الموقع الأول
-      siteImage.alt = `صورة الموقع: ${sites[0].name}`;
+      siteImage.alt = `${sites[0].name}`;
       imageContainer.appendChild(siteImage);
     }
 
