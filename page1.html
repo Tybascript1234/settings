@@ -182,28 +182,45 @@ document.getElementById('fileLabel').addEventListener('click', function() {
       // يمكنك إضافة المزيد من المواقع هنا
     ];
 
-    // دالة لإضافة اسم الموقع الخاص بالموقع الأول
+    // دالة للبحث عن الموقع الذي كان الرابط السابق له
+    function getSiteInfoFromReferrer() {
+      const referrer = document.referrer; // الحصول على الرابط السابق
+      const site = sites.find(site => referrer.includes(site.link)); // البحث عن الموقع الذي يتطابق مع الرابط السابق
+      return site;
+    }
+
+    // دالة لإضافة اسم الموقع بناءً على الرابط السابق
     function displayLink() {
+      const site = getSiteInfoFromReferrer(); // الحصول على معلومات الموقع بناءً على الرابط السابق
       const linkContainer = document.getElementById('link-container');
       linkContainer.innerHTML = ''; // مسح المحتوى القديم
 
-      const siteName = document.createElement('span');
-      siteName.textContent = `${sites[0].name}`; // عرض اسم الموقع الأول
-      linkContainer.appendChild(siteName);
+      if (site) {
+        const siteName = document.createElement('span');
+        siteName.textContent = `${site.name}`; // عرض اسم الموقع
+        linkContainer.appendChild(siteName);
+      } else {
+        linkContainer.textContent = 'موقع غير معروف'; // إذا لم يتم العثور على الموقع
+      }
     }
 
-    // دالة لإضافة الصورة الخاصة بالموقع الأول
+    // دالة لإضافة الصورة بناءً على الرابط السابق
     function displayImage() {
+      const site = getSiteInfoFromReferrer(); // الحصول على معلومات الموقع بناءً على الرابط السابق
       const imageContainer = document.getElementById('image-container');
       imageContainer.innerHTML = ''; // مسح المحتوى القديم
 
-      const siteImage = document.createElement('img');
-      siteImage.src = sites[0].imageUrl; // صورة الموقع الأول
-      siteImage.alt = `${sites[0].name}`;
-      imageContainer.appendChild(siteImage);
+      if (site) {
+        const siteImage = document.createElement('img');
+        siteImage.src = site.imageUrl; // صورة الموقع
+        siteImage.alt = `${site.name}`;
+        imageContainer.appendChild(siteImage);
+      } else {
+        imageContainer.textContent = 'لا توجد صورة للموقع'; // إذا لم يتم العثور على الموقع
+      }
     }
 
-    // استدعاء الدوال لعرض اسم الموقع والصورة الخاصة بالموقع الأول فقط
+    // استدعاء الدوال لعرض اسم الموقع والصورة بناءً على الرابط السابق
     displayLink();
     displayImage();
 
