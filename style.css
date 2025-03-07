@@ -65,6 +65,7 @@ ion-icon {
 }
 .ccit-logo img {
     height: 51px;
+    background-color: white;
 }
 .ccit-logo::before {
     position: absolute;
