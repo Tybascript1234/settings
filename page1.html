@@ -454,51 +454,40 @@ document.getElementById('fileLabel').addEventListener('click', function() {
 
 
 <script>
-// تخزين الروابط والصور في مصفوفة
-const sites = [
-      {
+   // تخزين الروابط والصور في مصفوفة
+   const sites = [
+        {
         link: "https://tybascript1234.github.io/Qr-1/",
         imageUrl: "https://github.com/Tybascript1234/Qr-1/blob/main/New%20Project.png?raw=true"
       },
       {
         link: "https://www.example2.com",
-        imageUrl: "https://via.placeholder.com/150/FF5733/FFFFFF?Text=Example2"
+        imageUrl: "https://via.placeholder.com/800x300/FF5733/FFFFFF?Text=Example2"
       }
       // يمكنك إضافة المزيد من المواقع هنا
     ];
 
-    // دالة لإضافة المواقع إلى الديف الخاص بالرابط
-    function displayLinks() {
-      const linkContainer = document.getElementById('link-container');
-      linkContainer.innerHTML = ''; // مسح المحتوى القديم
+    // دالة لإظهار الرابط والصورة للموقع السابق
+    function displayPreviousSite(index) {
+      const siteContainer = document.getElementById('site-container');
+      const siteLink = document.getElementById('site-link');
 
-      sites.forEach(site => {
-        const siteLink = document.createElement('a');
-        siteLink.href = site.link;
-        siteLink.target = '_blank';
-        siteLink.textContent = `رابط إلى الموقع: ${site.link}`;
-        linkContainer.appendChild(siteLink);
-        linkContainer.appendChild(document.createElement('br')); // إضافة فاصل بين الروابط
-      });
+      // مسح المحتوى السابق
+      siteLink.innerHTML = ''; // مسح الرابط القديم
+      siteContainer.style.backgroundImage = ''; // مسح الصورة القديمة
+
+      if (index >= 0 && index < sites.length) {
+        // إضافة الصورة كخلفية
+        siteContainer.style.backgroundImage = `url(${sites[index].imageUrl})`;
+
+        // عرض الرابط للموقع
+        siteLink.href = sites[index].link;
+        siteLink.textContent = `رابط إلى الموقع: ${sites[index].link}`;
+      }
     }
 
-    // دالة لإضافة المواقع إلى الديف الخاص بالصور
-    function displayImages() {
-      const imageContainer = document.getElementById('image-container');
-      imageContainer.innerHTML = ''; // مسح المحتوى القديم
-
-      sites.forEach(site => {
-        const siteImage = document.createElement('img');
-        siteImage.src = site.imageUrl;
-        siteImage.alt = `صورة الموقع: ${site.link}`;
-        imageContainer.appendChild(siteImage);
-        imageContainer.appendChild(document.createElement('br')); // إضافة فاصل بين الصور
-      });
-    }
-
-    // استدعاء الدوال لعرض الروابط والصور
-    displayLinks();
-    displayImages();
+    // استدعاء الدالة لعرض الموقع السابق
+    displayPreviousSite(0); // سيتم عرض الموقع الأول في المصفوفة
 
 </script>
 
