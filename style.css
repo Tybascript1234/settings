@@ -54,6 +54,8 @@ ion-icon {
     margin: 36px;
     left: 0;
     top: 0;
+    font-size: 12px;
+    text-align: center;
     background-image: url(https://cdn-icons-png.flaticon.com/256/3177/3177440.png);
     background-size: cover;
     width: 51px;
