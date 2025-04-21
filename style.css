@@ -310,16 +310,6 @@ input.empty {
     left: 0;
 }
 
-:dir(rtl) .xo {
-  text-align: right;
-  direction: rtl;
-}
-
-:dir(ltr) .xo {
-  text-align: left;
-  direction: ltr;
-}
-
 .Click_focus:focus {
     background: rgb(0 0 0 / 6%);
 }
