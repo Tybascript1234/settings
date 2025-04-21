@@ -319,3 +319,7 @@ input.empty {
   text-align: left;
   direction: ltr;
 }
+
+.Click_focus:focus {
+    background: rgb(0 0 0 / 6%);
+}
