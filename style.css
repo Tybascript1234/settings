@@ -65,8 +65,8 @@ ion-icon {
     height: 51px;
     border-radius: 100px;
     user-select: none;
-    overflow: hidden;
-    box-shadow: 0px 0px 2px #ccc;
+    /*overflow: hidden; */
+    /*box-shadow: 0px 0px 2px #ccc; */
 }
 .ccit-logo img {
     height: 51px;
