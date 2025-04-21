@@ -225,7 +225,7 @@ body .ol-div {
     justify-content: center;
 }
 .ddf {
-    text-align: center;
+    text-align: -webkit-center;
 }
 body .ccit-logo {
     left: auto;
