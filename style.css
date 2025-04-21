@@ -308,7 +308,7 @@ input.empty {
     position: absolute;
     display: none;
     z-index: 20;
-    background-color: white;
+    /*background-color: white; */
     bottom: 0;
     left: 0;
 }
