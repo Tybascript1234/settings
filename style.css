@@ -9,6 +9,9 @@ body {
     background: rgb(240 244 249);
     color: #3f3f3f;
 }
+a {
+    cursor: pointer;
+}
 ul {
     margin: 0;
     padding: 0;
