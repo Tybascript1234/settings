@@ -203,6 +203,16 @@ ion-icon {
     font-family: system-ui;
 }
 
+@keyframes ttt {
+from {
+    opacity: 0;
+    margin-bottom: -180px;
+}
+to {
+  
+}
+}
+
 @media screen and (max-width: 600px) {
 body .ccit {
     text-align: center;
@@ -255,6 +265,7 @@ body .ol-button {
     font-size: 22px;
 }
 body .Languag .ooo {
+    animation: ttt 0.3s ease forwards;
     right: 0;
     left: auto;
     position: fixed;
