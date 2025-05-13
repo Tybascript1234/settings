@@ -86,6 +86,7 @@ ion-icon {
     font-family: sans-serif;
     line-height: 1;
     display: block;
+    max-width: 300px;
     transition: ease 0.2s;
 }
 .ol-div {
