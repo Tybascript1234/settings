@@ -308,6 +308,7 @@ input.empty {
 .xo {
     margin-top: 4px;
     display: block;
+    max-width: 350px;
 }
 .xo a {
     transition: ease 0.3s;
