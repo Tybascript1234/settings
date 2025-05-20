@@ -218,6 +218,9 @@ to {
 }
 
 @media screen and (max-width: 600px) {
+body {
+    background: #fff;
+}
 body .ccit {
     text-align: center;
     display: block;
