@@ -97,7 +97,9 @@ ion-icon {
     width: min-content;
 }
 .ol-div input {
+    transition: ease 0.3s;
     padding: 10px;
+    outline: none;
     margin-bottom: 10px;
     width: 336px;
     height: 32px;
