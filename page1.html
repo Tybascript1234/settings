@@ -49,13 +49,22 @@
                 <div style="display: flex;">
                     <input type="file" id="file" style="display: none;" name="file">
                     <label for="file" class="ol-div2-button wave-button" id="fileLabel">Attach file</label>
-                    <button class="ol-div2-button2 wave-button" type="submit">Subscribe</button>
+                    <button class="ol-div2-button2 wave-button submit12345js" type="submit">Subscribe</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    document.querySelector('button.submit12345js').addEventListener('click', function(event) {
+      event.preventDefault(); // لمنع إرسال النموذج فورًا
+      setTimeout(function() {
+        window.history.back();
+      }, 1000); // تأخير ثانية واحدة (1000 مللي ثانية)
+    });
+</script>
+    
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const backButton = document.getElementById("backButton");
